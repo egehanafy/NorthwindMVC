@@ -1,0 +1,66 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Product Table";
+    
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"] -Product/Index</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mt-2">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between">
+                            <h2>Products</h2>
+                            <a href="/Product/AddProduct" class="btn btn-success">New Product</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>ProductName</th>
+                                    <th>UnitPrice</th>
+                                    <th>UnitsInStock</th>
+                                    <th>Category</th>
+                                    <th>Supplier</th>
+                                    <th>Options</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                    @foreach(var item in ViewBag.Products as List<NorthwindMVC.Models.Product>)
+                                    {
+                                    <tr>
+                                        <td>@item.ID</td>
+                                        <td>@item.ProductName</td>
+                                        <td>@item.UnitPrice</td>
+                                        <td>@item.CategoryName</td>
+                                        <td>@item.UnitsInstock</td>
+                                        <td>@item.Supplier</td>
+                                        <td> @Html.ActionLink("Delete", "DeleteProduct", new {ProductId = item.ID})</td>
+                                        
+                                    </tr>
+                                    }
+                                    
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

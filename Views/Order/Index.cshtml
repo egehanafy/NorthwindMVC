@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewData["Title"] = "Order Table";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mt-2">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between">
+                            <h2>Orders</h2>
+                            <a href="/Order/AddOrder" class="btn btn-success">New Order</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Date</th>
+                                    <th>Address</th>
+                                    <th>ShippingFee</th>
+                                    <th>Options</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var item in ViewBag.Orders as List<NorthwindMVC.Models.Order>)
+                                {
+                                    <tr>
+                                        <td>@item.ID</td>
+                                        <td>@item.Date</td>
+                                        <td>@item.Address</td>
+                                        <td>@item.ShippingFee</td>
+                                        <td> @Html.ActionLink("Delete", "DeleteOrder", new {OrderId = item.ID})</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Add Employee";
+    
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto mt-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Add Employee</h2>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            <div class="mb-3">
+                                <label class="form-label">ID: </label>
+                                <input type="number" class="form-control" name="ID">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">First Name: </label>
+                                <input type="text" class="form-control" name="FirstName">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Last Name: </label>
+                                <input type="text" class="form-control" name="LastName">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Speciality: </label>
+                                <input type="text" class="form-control" name="Speciality">
+                            </div>
+                            <button type="submit" class="btn btn-primary">ADD</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Speciality</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.Employees as List<NorthwindMVC.Models.Employee>)
+                {
+                    <tr>
+                        <td>@item.ID</td>
+                        <td>@item.FirstName</td>
+                        <td>@item.LastName</td>
+                        <td>@item.Speciality</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

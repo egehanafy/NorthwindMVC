@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewData["Title"] = "Add Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto mt-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Add Order</h2>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            <div class="mb-3">
+                                <label class="form-label">ID: </label>
+                                <input type="number" class="form-control" name="ID">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Date: </label>
+                                <input type="datetime" class="form-control" name="Date">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Address: </label>
+                                <input type="text" class="form-control" name="Address">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Shipping Fee: </label>
+                                <input type="text" class="form-control" name="ShippingFee">
+                            </div>
+                            <button type="submit" class="btn btn-primary">ADD</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Address</th>
+                    <th>ShippingFee</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in ViewBag.Orders as List<NorthwindMVC.Models.Order>)
+                {
+                    <tr>
+                        <td>@item.ID</td>
+                        <td>@item.Date</td>
+                        <td>@item.Address</td>
+                        <td>@item.ShippingFee</td>
+                        <td> @Html.ActionLink("Delete", "DeleteOrder", new {OrderId = item.ID})</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

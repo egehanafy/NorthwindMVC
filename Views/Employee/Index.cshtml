@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewData["Title"] = "Employee Table";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mt-2">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between">
+                            <h2>Employees</h2>
+                            <a href="/Employee/AddEmployee" class="btn btn-success">New Employee</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>FirstName</th>
+                                    <th>LastName</th>
+                                    <th>Speciality</th>
+                                    <th>Options</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var item in ViewBag.Employees as List<NorthwindMVC.Models.Employee>)
+                                {
+                                    <tr>
+                                        <td>@item.ID</td>
+                                        <td>@item.FirstName</td>
+                                        <td>@item.LastName</td>
+                                        <td>@item.Speciality</td>
+                                        <td> @Html.ActionLink("Delete", "DeleteEmployee", new {EmployeeId = item.ID})</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

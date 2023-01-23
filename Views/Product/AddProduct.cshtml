@@ -1,0 +1,90 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddProduct</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto mt-2">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Add Product</h2>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            <div class="mb-3">
+                                <label class="form-label">ID: </label>
+                                <input type="number" class="form-control" name="ID">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Product Name: </label>
+                                <input type="text" class="form-control" name="ProductName">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Unit Price: </label>
+                                <input type="text" class="form-control" name="UnitPrice">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Units In Stock: </label>
+                                <input type="text" class="form-control" name="UnitsInStock">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Category Name: </label>
+                                <input type="text" class="form-control" name="CategoryName">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Suppiler: </label>
+                                <input type="text" class="form-control" name ="Supplier">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">ADD</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>ProductName</th>
+                    <th>UnitPrice</th>
+                    <th>UnitsInStock</th>
+                    <th>Category</th>
+                    <th>Supplier</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in ViewBag.Products as List<NorthwindMVC.Models.Product>)
+                {
+                    <tr>
+                        <td>@item.ID</td>
+                        <td>@item.ProductName</td>
+                        <td>@item.UnitPrice</td>
+                        <td>@item.UnitsInstock</td>
+                        <td>@item.CategoryName</td>
+                        <td>@item.Supplier</td>
+                        @*<td>
+                            <div class="d-flex">
+                                <a class="btn btn-sm btn-danger">Delete</a>
+                            </div>
+                        </td>*@
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

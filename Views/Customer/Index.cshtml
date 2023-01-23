@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewData["Title"] = "Customer Table";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mt-2">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between">
+                            <h2>Customers</h2>
+                            <a href="/Customer/AddCustomer" class="btn btn-success">New Customer</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th> 
+                                    <th>Company Name</th>
+                                    <th>Contact Number</th>
+                                    <th>Address</th>
+                                    <th>Options</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var item in ViewBag.Customers as List<NorthwindMVC.Models.Customer>)
+                                {
+                                    <tr>
+                                        <td>@item.ID</td>
+                                        <td>@item.CompanyName</td>
+                                        <td>@item.ContactNumber</td>
+                                        <td>@item.Address</td>
+                                        <td> @Html.ActionLink("Delete", "DeleteCustomer", new {CustomerId = item.ID})</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
